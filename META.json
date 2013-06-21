@@ -1,0 +1,54 @@
+{
+   "abstract" : "A Catmandu::Store plugin for DBI based interfaces",
+   "author" : [
+      "unknown"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Catmandu-Store-DBI",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::Exception" : "0",
+            "Test::More" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.40"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Catmandu" : "0.2003",
+            "DBI" : "1.616",
+            "namespace::clean" : "0.24",
+            "perl" : "v5.10.1"
+         }
+      }
+   },
+   "provides" : {
+      "Catmandu::Store::DBI" : {
+         "file" : "lib/Catmandu/Store/DBI.pm",
+         "version" : "0.02"
+      },
+      "Catmandu::Store::DBI::Bag" : {
+         "file" : "lib/Catmandu/Store/DBI.pm",
+         "version" : 0
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
+   "version" : "0.02"
+}
