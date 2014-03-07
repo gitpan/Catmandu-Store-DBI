@@ -17,6 +17,13 @@ my $builder = Module::Build->new(
     },
     add_to_cleanup     => [ 'Catmandu-Store-DBI-*' ],
     create_makefile_pl => 'traditional',
+    meta_merge => {
+        resources => {
+            repository => 'https://github.com/LibreCat/Catmandu-Store-DBI.git',
+            bugtracker => 'htps://github.com/LibreCat/Catmandu-Store-DBI/issues',
+            homepage => 'https://github.com/LibreCat/Catmandu-Store-DBI',
+        },
+    },
 );
 
 $builder->create_build_script;

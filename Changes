@@ -1,4 +1,9 @@
 Revision history for Catmandu-Store-DBI
 
-0.02	2013-06-12
-	- initial release
+0.03  2014-03-07
+  - add support for postgres >= 9.1
+  - optimized slice implementation
+  - mysql auto reconnect
+
+0.02  2013-06-12
+  - initial release

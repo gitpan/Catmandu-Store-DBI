@@ -6,9 +6,9 @@ build_requires:
   Test::Exception: 0
   Test::More: 0
 configure_requires:
-  Module::Build: 0.40
+  Module::Build: 0.42
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Module::Build version 0.4203, CPAN::Meta::Converter version 2.133380'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,15 +17,17 @@ name: Catmandu-Store-DBI
 provides:
   Catmandu::Store::DBI:
     file: lib/Catmandu/Store/DBI.pm
-    version: 0.02
+    version: 0.03
   Catmandu::Store::DBI::Bag:
     file: lib/Catmandu/Store/DBI.pm
-    version: 0
 requires:
   Catmandu: 0.2003
   DBI: 1.616
   namespace::clean: 0.24
   perl: v5.10.1
 resources:
+  bugtracker: htps://github.com/LibreCat/Catmandu-Store-DBI/issues
+  homepage: https://github.com/LibreCat/Catmandu-Store-DBI
   license: http://dev.perl.org/licenses/
-version: 0.02
+  repository: https://github.com/LibreCat/Catmandu-Store-DBI.git
+version: 0.03
