@@ -1,5 +1,8 @@
 Revision history for Catmandu-Store-DBI
 
+0.04  2014-03-31
+  - fix postgres update sql
+
 0.03  2014-03-07
   - add support for postgres >= 9.1
   - optimized slice implementation

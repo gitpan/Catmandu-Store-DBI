@@ -5,7 +5,7 @@ use Catmandu::Sane;
 use DBI;
 use Moo;
 
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 
 with 'Catmandu::Store';
 
@@ -72,6 +72,7 @@ package Catmandu::Store::DBI::Bag;
 use Catmandu::Sane;
 use Moo;
 use Catmandu::Iterator;
+use Catmandu::Util qw(require_package);
 
 with 'Catmandu::Bag';
 with 'Catmandu::Serializer';
@@ -142,17 +143,27 @@ sub _build_add_mysql {
 }
 
 sub _build_add_postgres {
-    # See http://stackoverflow.com/questions/15840922/where-not-exists-in-postgresql-gives-syntax-error
-    my $self       = $_[0];
+    my ($self)     = @_;
+    my $pg         = require_package('DBD::Pg');
     my $name       = $self->name;
     my $sql_update = "update $name set data=? where id=?";
+    # see http://stackoverflow.com/questions/15840922/where-not-exists-in-postgresql-gives-syntax-error
     my $sql_insert = "insert into $name select ?,? where not exists (select 1 from $name where id=?)";
+
     sub {
         my $dbh = $self->store->dbh;
         my $sth = $dbh->prepare_cached($sql_update)
             or Catmandu::Error->throw($dbh->errstr);
-        $sth->execute($_[1], $_[0])
+
+        # special quoting for bytea in postgres:
+        # https://rt.cpan.org/Public/Bug/Display.html?id=13180
+        # http://www.nntp.perl.org/group/perl.dbi.users/2005/01/msg25370.html
+        $sth->bind_param(1,$_[1], {pg_type => $pg->PG_BYTEA});
+        $sth->bind_param(2,$_[0]);
+
+        $sth->execute
             or Catmandu::Error->throw($sth->errstr);
+
         unless ($sth->rows) {
             $sth->finish;
             $sth = $dbh->prepare_cached($sql_insert)
@@ -396,7 +407,7 @@ Catmandu::Store::DBI - A Catmandu::Store plugin for DBI based interfaces
 
 =head1 VERSION
 
-Version 0.02
+Version 0.04
 
 =head1 SYNOPSIS
 
@@ -428,7 +439,7 @@ Version 0.02
 The L<catmandu> command line client can be used like this:
 
     catmandu import JSON to DBI --data_source SQLite:mydb.sqlite < data.json
-    
+
 =head1 DESCRIPTION
 
 A Catmandu::Store::DBI is a Perl package that can store data into

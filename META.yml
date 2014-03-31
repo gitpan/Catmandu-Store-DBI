@@ -17,7 +17,7 @@ name: Catmandu-Store-DBI
 provides:
   Catmandu::Store::DBI:
     file: lib/Catmandu/Store/DBI.pm
-    version: 0.03
+    version: 0.04
   Catmandu::Store::DBI::Bag:
     file: lib/Catmandu/Store/DBI.pm
 requires:
@@ -30,4 +30,4 @@ resources:
   homepage: https://github.com/LibreCat/Catmandu-Store-DBI
   license: http://dev.perl.org/licenses/
   repository: https://github.com/LibreCat/Catmandu-Store-DBI.git
-version: 0.03
+version: 0.04
